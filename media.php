@@ -17,13 +17,12 @@ if (!empty($_SESSION['nama'])) {
     <head>
 
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <title>SISTEM ABSENSI SISWA</title>
+        <title>SISTEM ABSENSI SISWA | Home</title>
 
         <!-- Core CSS - Include with every page -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
 
@@ -80,27 +79,19 @@ if (!empty($_SESSION['nama'])) {
     </head>
 
     <body>
-
-        <div id="wrapper">
-
-            <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <div class="" style="display: flex;">
-                        <img src="./asset/logo.png" alt="" style="width: 4rem;" class="m-3">
-                        <a class="navbar-brand" href="media.php?module=home">SISTEM ABSENSI SISWA</a>
-                    </div>
-                </div>
-                <!-- /.navbar-header -->
-
-                <ul class="nav navbar-top-links navbar-right">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <!-- test nav -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="d-flex navbar-brand align-items-center">
+                <img src="./asset/logo.png" alt="" class="mr-3" style="width: 3rem;">
+                <a class="navbar-brand" href="media.php?module=home">SISTEM ABSENSI SISWA</a>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">
                             <?php
                             if ($level == "admin") {
                                 echo $usre;
@@ -110,11 +101,10 @@ if (!empty($_SESSION['nama'])) {
                                 echo "Siswa: $usre";
                             }
                             ?>
-
                         </a>
                     </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <li class="nav-item">
+                        <span class="nav-link" href="#">
                             <?php
                             if ($level == "admin" or $level == "guru") {
                                 $sqla = mysqli_query($conn, "select * from sekolah where id='$idd'");
@@ -128,11 +118,10 @@ if (!empty($_SESSION['nama'])) {
                                 echo "Kelas: $rs[nama] | $rsa[nama]";
                             }
                             ?>
-                        </a>
+                        </span>
                     </li>
-
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <li class="nav-item">
+                        <span class="nav-link" href="#">
                             <?php
                             $tgl_lengkap = tgl_ina(date("Y-m-d"));
                             if ($level == "guru") {
@@ -143,150 +132,87 @@ if (!empty($_SESSION['nama'])) {
                                 echo "$tgl_lengkap";
                             }
                             ?>
-                        </a>
+                        </span>
                     </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="" href="logout.php">
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php">
                             <?php echo "Logout"; ?>
                         </a>
                     </li>
-
-                    <!-- /.dropdown -->
                 </ul>
-                <!-- /.navbar-top-links -->
+            </div>
+        </nav>
 
-                <div class="navbar-default navbar-static-side" role="navigation">
-                    <div class="sidebar-collapse">
-                        <ul class="nav" id="side-menu">
+        <div class="d-flex">
+            <!-- side nav -->
+            <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
+                <ul class="list-unstyled ps-0">
+                    <?php if ($level == 'admin') { ?>
+                        <li class="mb-1">
+                            <button class="btn btn-light rounded collapsed w-100" data-toggle="collapse" data-target="#home-collapse" aria-expanded="false">
+                                Data Siswa
+                            </button>
+                            <div class="collapse mt-2 ml-3" id="home-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                    <li><a href="media.php?module=input_siswa&act=input" class="link-dark rounded mb-2">Input Data</a></li>
+                                    <li><a href="media.php?module=tampil" class="link-dark rounded mb-2">Lihat Data</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <?php } ?>
+                    <li class="mb-1">
+                        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+                            Dashboard
+                        </button>
+                        <div class="collapse" id="dashboard-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="#" class="link-dark rounded">Overview</a></li>
+                                <li><a href="#" class="link-dark rounded">Weekly</a></li>
+                                <li><a href="#" class="link-dark rounded">Monthly</a></li>
+                                <li><a href="#" class="link-dark rounded">Annually</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mb-1">
+                        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+                            Orders
+                        </button>
+                        <div class="collapse" id="orders-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="#" class="link-dark rounded">New</a></li>
+                                <li><a href="#" class="link-dark rounded">Processed</a></li>
+                                <li><a href="#" class="link-dark rounded">Shipped</a></li>
+                                <li><a href="#" class="link-dark rounded">Returned</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="border-top my-3"></li>
+                    <li class="mb-1">
+                        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+                            Account
+                        </button>
+                        <div class="collapse" id="account-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="#" class="link-dark rounded">New...</a></li>
+                                <li><a href="#" class="link-dark rounded">Profile</a></li>
+                                <li><a href="#" class="link-dark rounded">Settings</a></li>
+                                <li><a href="#" class="link-dark rounded">Sign out</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
 
-                            <?php if ($level == 'admin') { ?>
-
-                                <li>
-                                    <a href="#"><i class="fa fa-dashboard fa-fw"></i> Data Siswa<span class="fa arrow"></span></a>
-                                    <ul class="nav nav-second-level">
-                                        <li>
-                                            <a href="media.php?module=input_siswa&act=input">Input Data</a>
-                                        </li>
-                                        <li>
-                                            <a href="media.php?module=tampil">View Data</a>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-second-level -->
-                                </li>
-
-                                <li>
-                                    <a href="#"><i class="fa fa-dashboard fa-fw"></i> Data Guru<span class="fa arrow"></span></a>
-                                    <ul class="nav nav-second-level">
-
-                                        <li>
-                                            <a href="media.php?module=input_guru&act=input">Input Data</a>
-                                        </li>
-                                        <li>
-                                            <a href="media.php?module=guru">View Data</a>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-second-level -->
-                                </li>
-                            <?php } ?>
-
-                            <?php if ($level == 'admin') { ?>
-
-                                <li>
-                                    <a href="#"><i class="fa fa-dashboard fa-fw"></i> Data Kelas<span class="fa arrow"></span></a>
-                                    <ul class="nav nav-second-level">
-                                        <li>
-                                            <a href="media.php?module=input_kelas&act=input">Input Data</a>
-                                        </li>
-                                        <li>
-                                            <a href="media.php?module=kelas">View Data</a>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-second-level -->
-                                </li>
-                            <?php } ?>
-
-                            <?php if ($level == 'admin') { ?>
-
-                                <li>
-                                    <a href="#"><i class="fa fa-dashboard fa-fw"></i> Data Mata Pelajaran<span class="fa arrow"></span></a>
-                                    <ul class="nav nav-second-level">
-                                        <li>
-                                            <a href="media.php?module=input_pelajaran&act=input">Input Data</a>
-                                        </li>
-                                        <li>
-                                            <a href="media.php?module=mata_pelajaran">View Data</a>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-second-level -->
-                                </li>
-                            <?php } ?>
-
-                            <?php if ($level == 'admin') { ?>
-
-                                <li>
-                                    <a href="#"><i class="fa fa-dashboard fa-fw"></i> Data Jadwal<span class="fa arrow"></span></a>
-                                    <ul class="nav nav-second-level">
-                                        <li>
-                                            <a href="media.php?module=input_jadwal&act=input">Input Data</a>
-                                        </li>
-                                        <li>
-                                            <a href="media.php?module=senin">View Data</a>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-second-level -->
-                                </li>
-                            <?php } ?>
-
-                            <?php if ($level == 'admin') { ?>
-
-                                <li>
-                                    <a href="media.php?module=sekolah"><i class="fa fa-dashboard fa-fw"></i> Data Sekolah</a>
-                                    <!-- /.nav-second-level -->
-                                </li>
-
-                            <?php } ?>
-
-                            <?php if ($level == 'user') { ?>
-                                <li>
-                                    <a href="media.php?module=siswa_senin"><i class="fa fa-bar-chart-o fa-fw"></i> Jadwal Belajar</a>
-                                </li>
-                            <?php } ?>
-                            <?php if ($level == 'guru') { ?>
-                                <li>
-                                    <a href="media.php?module=jadwal_mengajar"><i class="fa fa-bar-chart-o fa-fw"></i> Jadwal Mengajar</a>
-                                </li>
-                            <?php } ?>
-                            <?php if ($level == 'guru') { ?>
-                                <li>
-                                    <a href="media.php?module=guru_det"><i class="fa fa-dashboard fa-fw"></i> Data Guru</a>
-                                </li>
-                            <?php } ?>
-                            <?php if ($level == 'user') { ?>
-                                <li>
-                                    <a href="media.php?module=siswa_det"><i class="fa fa-dashboard fa-fw"></i> Data Siswa</a>
-                                </li>
-                            <?php } ?>
-
-                        </ul>
-                        <!-- /#side-menu -->
-                    </div>
-                    <!-- /.sidebar-collapse -->
-                </div>
-                <!-- /.navbar-static-side -->
-            </nav>
-
+            <!-- page-wrapper -->
             <div id="page-wrapper">
                 <?php include "content.php";  ?>
             </div>
-            <!-- /#page-wrapper -->
-
         </div>
-        <!-- /#wrapper -->
 
         <!-- Core Scripts - Include with every page -->
-        <script src="js/jquery-1.10.2.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
         <!-- Page-Level Plugin Scripts - Tables -->
         <script src="js/plugins/dataTables/jquery.dataTables.js"></script>
