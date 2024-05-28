@@ -6,10 +6,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>SISTEM ABSENSI SISWA</title>
+    <title>Sistem Absensi Siswa | Login</title>
 
     <!-- Core CSS - Include with every page -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 
@@ -21,18 +22,16 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-4 col-md-offset-4">
+            <div class="mx-auto border p-5 rounded-sm mt-5">
                 <?php
                 include 'config/conn.php';
                 $sql = mysqli_query($conn, "select * from sekolah where id='2'");
                 $rs = mysqli_fetch_array($sql);
                 ?>
 
-                <h2 class="text-center">Sistem Absensi <?php echo $rs['nama']; ?></h2>
-                <div class="login-panel panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Login</h3>
-                    </div>
+                <img src="./asset/logo.png" alt="" class="mx-auto d-block mb-4" style="height: 5rem;">
+                <h2 class="text-center mb-5">Sistem Absensi<br/><?php echo $rs['nama']; ?></h2>
+                <div>
                     <div class="panel-body">
                         <form role="form" method="post" action="ceklog.php">
                             <fieldset>
