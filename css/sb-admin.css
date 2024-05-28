@@ -3,13 +3,12 @@
 /* ------------------------------- */
 
 body {
-    padding-top: 100px;
     background-color: #f8f8f8;
 }
 
 @media(min-width:768px) {
     body {
-        padding-top: 50px;
+        padding-top: 0;
     }
 }
 
@@ -23,7 +22,7 @@ body {
 }
 
 #page-wrapper {
-    padding: 0 15px;
+    padding: 0 40px;
     min-height: 579px;
     height:100%;
     background-color: #fff;
@@ -32,9 +31,8 @@ body {
 @media(min-width:768px) {
     #page-wrapper {
         position: inherit;
-        margin: 0 0 0 250px;
-        padding: 0 30px;
         height:100%;
+        width: 100%;
         border-left: 1px solid #e7e7e7;
     }
 }
