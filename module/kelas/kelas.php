@@ -1,73 +1,74 @@
-            <div class="row">
-                <div class="col-lg-12">
-                    <h3 class="page-header"><strong>Data Kelas</strong></h3>
-                </div>
-                <!-- /.col-lg-12 -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading mt-4">
+                <h3 class="page-header"><strong>Data Kelas</strong></h3>
             </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Data Kelas
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center">Kode Sekolah</th>
-                                            <th class="text-center">Nama Sekolah</th>
-                                            <th class="text-center">Kelas</th>
-                                            <th class="text-center">Aksi</th>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Kode Sekolah</th>
+                                <th class="text-center">Nama Sekolah</th>
+                                <th class="text-center">Kelas</th>
+                                <th class="text-center">Aksi</th>
 
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $no = 1;
+                            $sql = mysqli_query($conn, "select * from kelas");
+                            while ($rs = mysqli_fetch_array($sql)) {
+                                $sqla = mysqli_query($conn, "select * from sekolah where id='$rs[id]'");
+                                $rsa = mysqli_fetch_array($sqla);
+                                if ($_SESSION['level'] == "admin_guru") {
+                                    if ($rsa['id'] == $_SESSION['id']) {
+
+                            ?> <tr class="odd gradeX">
+                                            <td><?php echo "$rsa[kode]";  ?></td>
+                                            <td><?php echo "$rsa[nama]";  ?></td>
+                                            <td class="text-center"><?php echo "$rs[nama]";  ?></td>
+
+                                            <td class="text-center">
+                                                <a href="./././media.php?module=input_kelas&act=edit_kelas&idk=<?php echo $rs['idk'] ?>">
+                                                    <button type="button" class="btn btn-outline-primary">Edit</button> <a href="././module/simpan.php?act=hapus_kelas&idk=<?php echo $rs['idk'] ?>">
+                                                        <button type="button" class="btn btn-outline-danger">Hapus</button></a>
+                                            </td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        $no = 1;
-                                        $sql = mysqli_query($conn, "select * from kelas");
-                                        while ($rs = mysqli_fetch_array($sql)) {
-                                            $sqla = mysqli_query($conn, "select * from sekolah where id='$rs[id]'");
-                                            $rsa = mysqli_fetch_array($sqla);
-                                            if ($_SESSION['level'] == "admin_guru") {
-                                                if ($rsa['id'] == $_SESSION['id']) {
+                                    <?php
+                                    }
+                                } else {
+                                    ?>
+                                    <tr class="odd gradeX">
+                                        <td><?php echo "$rsa[kode]";  ?></td>
+                                        <td><?php echo "$rsa[nama]";  ?></td>
+                                        <td class="text-center"><?php echo "$rs[nama]";  ?></td>
 
-                                        ?> <tr class="odd gradeX">
-                                                        <td><?php echo "$rsa[kode]";  ?></td>
-                                                        <td><?php echo "$rsa[nama]";  ?></td>
-                                                        <td class="text-center"><?php echo "$rs[nama]";  ?></td>
+                                        <td class="text-center">
+                                            <a href="./././media.php?module=input_kelas&act=edit_kelas&idk=<?php echo $rs['idk'] ?>">
+                                            <button type="button" class="btn btn-outline-primary">Edit</button>
+                                            <a href="././module/simpan.php?act=hapus_kelas&idk=<?php echo $rs['idk'] ?>">
+                                            <button type="button" class="btn btn-outline-danger">Hapus</button></a>
+                                        </td>
+                                    </tr>
 
-                                                        <td class="text-center"><a href="./././media.php?module=input_kelas&act=edit_kelas&idk=<?php echo $rs['idk'] ?>"><button type="button" class="btn btn-info">Edit</button> <a href="././module/simpan.php?act=hapus_kelas&idk=<?php echo $rs['idk'] ?>"><button type="button" class="btn btn-danger">Hapus</button></a></td>
-
-                                                    </tr>
-                                                <?php
-                                                }
-                                            } else {
-                                                ?>
-                                                <tr class="odd gradeX">
-                                                    <td><?php echo "$rsa[kode]";  ?></td>
-                                                    <td><?php echo "$rsa[nama]";  ?></td>
-                                                    <td class="text-center"><?php echo "$rs[nama]";  ?></td>
-
-                                                    <td class="text-center"><a href="./././media.php?module=input_kelas&act=edit_kelas&idk=<?php echo $rs['idk'] ?>"><button type="button" class="btn btn-info">Edit</button> <a href="././module/simpan.php?act=hapus_kelas&idk=<?php echo $rs['idk'] ?>"><button type="button" class="btn btn-danger">Hapus</button></a></td>
-
-                                                </tr>
-
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.table-responsive -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
+                            <?php
+                                }
+                            }
+                            ?>
+                            
+                        </tbody>
+                    </table>
                 </div>
-                <!-- /.col-lg-12 -->
+                <!-- /.table-responsive -->
             </div>
-            <!-- /.row -->
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
