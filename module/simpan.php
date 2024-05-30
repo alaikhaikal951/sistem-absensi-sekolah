@@ -213,25 +213,25 @@ if ($_GET['act'] == "hapus_jadwal") {
 
 if ($_GET['act'] == "input_guru") {
         $mrg = md5($_POST['k_password']);
-        mysqli_query($conn, "INSERT INTO guru(nip,nama,jk,alamat,idk,pass)
+        mysqli_query($conn, "INSERT INTO guru(nip,nama,jk,alamat,idg,pass)
 VALUES(
 '$_POST[nip]',
 '$_POST[nama]',
 '$_POST[jk]',
 '$_POST[alamat]',
-'$_POST[kelas]',
+'$_POST[idg]',
 '$mrg')");
         echo "<script>window.alert('Data Tersimpan');
         window.location=('../media.php?module=guru&kls=semua')</script>";
 }
+
 if ($_GET['act'] == "edit_guru") {
         $mrg = md5($_POST['k_password']);
         mysqli_query($conn, "update guru set nip='$_POST[nip]',
 nama='$_POST[nama]',
 jk='$_POST[jk]',
 alamat='$_POST[alamat]',
-pass='$mrg',
-idk='$_POST[kelas]' where idg='$_POST[idg]'");
+pass='$mrg'where idg='$_POST[idg]'");
         echo "<script>window.alert('Data Tersimpan');
         window.location=('../media.php?module=guru&kls=semua')</script>";
 }
