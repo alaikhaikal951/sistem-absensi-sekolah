@@ -154,8 +154,8 @@ if (!empty($_SESSION['nama'])) {
                             </button>
                             <div class="collapse mt-2 ml-3" id="home-collapse">
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    <li><a href="media.php?module=input_siswa&act=input" class="link-dark rounded mb-2">Input Data</a></li>
-                                    <li><a href="media.php?module=tampil" class="link-dark rounded mb-2">Lihat Data</a></li>
+                                    <li><a href="media.php?module=input_siswa&act=input" class="link-dark rounded mb-3">Input Data</a></li>
+                                    <li><a href="media.php?module=tampil" class="link-dark rounded">Lihat Data</a></li>
                                 </ul>
                             </div>
                         </li>
