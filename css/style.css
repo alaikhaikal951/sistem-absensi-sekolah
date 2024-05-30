@@ -21,3 +21,7 @@ a:hover {
 .input-group-addon {
   padding: .375rem .75rem .375rem 0;
 }
+
+td {
+  align-content: center;
+}
