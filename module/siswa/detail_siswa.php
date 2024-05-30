@@ -2,7 +2,7 @@
 $sql = mysqli_query($conn, "select * from siswa where ids='$_GET[ids]'");
 $rs = mysqli_fetch_array($sql);
 ?>
-<div class="row">
+<div class="row mt-4">
     <div class="col-lg-12">
         <h3 class="page-header"><strong>Detail Siswa : <?php echo "$rs[nama]"; ?></strong></h3>
     </div>
@@ -12,7 +12,7 @@ $rs = mysqli_fetch_array($sql);
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
-            <div class="panel-heading">
+            <div class="panel-heading mb-2">
                 Data Siswa
             </div>
             <div class="panel-body">
