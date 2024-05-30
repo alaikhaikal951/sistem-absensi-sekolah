@@ -1,4 +1,4 @@
-            <div class="row">
+            <div class="row mt-4">
                 <div class="col-lg-12">
                     <h3 class="page-header"><strong>Data Siswa</strong></h3>
                 </div>
@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-primary">
-                        <div class="panel-heading">
+                        <div class="panel-heading mb-2">
                             <?php
                             $klas = $_GET['kls'];
                             if ($klas == "semua") {
@@ -23,15 +23,15 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <table class="mt-5 table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
                                             <th class="text-center">NIS</th>
-                                            <th class="text-center" width="30%">Nama</th>
+                                            <th class="text-center" width="">Nama</th>
                                             <th class="text-center">JK</th>
                                             <th class="text-center">Kelas</th>
                                             <th class="text-center">No Telepon</th>
-                                            <th class="text-center">Aksi</th>
+                                            <th class="text-center" width="28%">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -109,8 +109,7 @@
                                                             <button type="button" class="btn btn-light">Details</button> </a>
 
                                                         <a href="./././media.php?module=input_siswa&act=edit&ids=<?php echo $rs['ids'] ?>">
-                                                            <button type="button" class="btn btn-outline-primar">Edit</button> </a>
-
+                                                            <button type="button" class="btn btn-outline-primary">Edit</button> </a>
 
                                                         <a href="././module/simpan.php?act=hapus&ids=<?php echo $rs['ids'] ?>">
                                                             <button type="button" class="btn btn-outline-danger">Hapus</button></a>

@@ -19,7 +19,7 @@ if (!empty($_SESSION['nama'])) {
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <title>SISTEM ABSENSI SISWA | Home</title>
+        <title>SISTEM ABSENSI SISWA</title>
 
         <!-- Core CSS - Include with every page -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -148,31 +148,31 @@ if (!empty($_SESSION['nama'])) {
             <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
                 <ul class="list-unstyled ps-0">
                     <?php if ($level == 'admin') { ?>
-                        <li class="mb-1">
+                        <li class="mb-2">
                             <button class="btn btn-light rounded collapsed w-100" data-toggle="collapse" data-target="#home-collapse" aria-expanded="false">
                                 Data Siswa
                             </button>
                             <div class="collapse mt-2 ml-3" id="home-collapse">
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    <li><a href="media.php?module=input_siswa&act=input" class="link-dark rounded mb-2">Input Data</a></li>
-                                    <li><a href="media.php?module=tampil" class="link-dark rounded mb-2">Lihat Data</a></li>
+                                    <li><a href="media.php?module=input_siswa&act=input" class="link-dark rounded mb-3">Input Data</a></li>
+                                    <li><a href="media.php?module=tampil" class="link-dark rounded">Lihat Data</a></li>
                                 </ul>
                             </div>
                         </li>
+                        <li class="mb-2">
+                            <button class="btn btn-light rounded collapsed w-100" data-toggle="collapse" data-target="#data-guru-collapse" aria-expanded="false">
+                                Data Guru
+                            </button>
+                            <div class="collapse mt-2 ml-3" id="data-guru-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                    <li><a href="media.php?module=input_guru&act=input" class="link-dark rounded mb-3">Input Data</a></li>
+                                    <li><a href="media.php?module=guru" class="link-dark rounded">Lihat Data</a></li>
+                                </ul>
+                            </div>
+                        </li>
+
                     <?php } ?>
-                    <li class="mb-1">
-                        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-                            Dashboard
-                        </button>
-                        <div class="collapse" id="dashboard-collapse">
-                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="#" class="link-dark rounded">Overview</a></li>
-                                <li><a href="#" class="link-dark rounded">Weekly</a></li>
-                                <li><a href="#" class="link-dark rounded">Monthly</a></li>
-                                <li><a href="#" class="link-dark rounded">Annually</a></li>
-                            </ul>
-                        </div>
-                    </li>
+
                     <li class="mb-1">
                         <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
                             Orders

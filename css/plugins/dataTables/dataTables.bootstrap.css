@@ -6,6 +6,7 @@ div.dataTables_length label {
 
 div.dataTables_length select {
     width: 75px;
+    margin-right: 0.5rem;
 }
 
 div.dataTables_filter label {
@@ -15,15 +16,17 @@ div.dataTables_filter label {
 
 div.dataTables_filter input {
     width: 16em;
+    margin-left: 0.5rem;
 }
 
 div.dataTables_info {
-    padding-top: 8px;
+    padding: 8px 0 3rem 0;
 }
 
 div.dataTables_paginate {
     float: right;
     margin: 0;
+    padding: 8px 0 3rem 0;
 }
 
 div.dataTables_paginate ul.pagination {
@@ -41,7 +44,7 @@ table.dataTable th {
 
 table.dataTable {
     clear: both;
-    margin-top: 6px !important;
+    margin-top: 1rem !important;
     margin-bottom: 6px !important;
     max-width: none !important;
 }

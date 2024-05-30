@@ -5,3 +5,23 @@ body {
   font-weight: 400;
   font-style: normal;
 }
+
+.row {
+  width: 100% !important;
+}
+
+.paginate_button {
+  padding: 0 10px;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.input-group-addon {
+  padding: .375rem .75rem .375rem 0;
+}
+
+td {
+  align-content: center;
+}
