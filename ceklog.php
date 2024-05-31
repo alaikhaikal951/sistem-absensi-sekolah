@@ -5,22 +5,20 @@ include "config/conn.php";
 
 $pass = md5($_POST['password']);
 $passw = $_POST['password'];
-
 $user = $_POST['username'];
 
 $sql = mysqli_query($conn, "select * from user where nama='$user' and pass='$pass'");
 $count = mysqli_num_rows($sql);
 $rs = mysqli_fetch_array($sql);
+
 if ($count > 0) {
 	session_start();
 	$_SESSION['idu'] = $rs['idu'];
-
 	$_SESSION['nama'] = $rs['nama'];
 	$_SESSION['level'] = $rs['level'];
 	$_SESSION['idk'] = "";
 	$_SESSION['ortu'] = "";
 	$_SESSION['id'] = $rs['id'];
-
 
 	header('location:media.php?module=home');
 } else {
@@ -32,7 +30,7 @@ if ($count > 0) {
 		session_start();
 		$_SESSION['idu'] = $rsa['nis'];
 		$_SESSION['nama'] = $rsa['nama'];
-		$_SESSION['level'] = "user";
+		$_SESSION['level'] = "siswa";
 		$_SESSION['ortu'] = $passw;
 		$_SESSION['idk'] = $rsa['idk'];
 		$_SESSION['id'] = "2";
