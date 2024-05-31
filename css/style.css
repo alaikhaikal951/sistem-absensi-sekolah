@@ -14,8 +14,13 @@ body {
   padding: 0 10px;
 }
 
+a {
+  color: #007bc2;
+}
+
 a:hover {
   text-decoration: none;
+  font-weight: bold;
 }
 
 .input-group-addon {

@@ -1,5 +1,5 @@
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12 mt-4">
 					<h3 class="page-header"><strong>Data Sekolah</strong></h3>
                 </div>
                 <!-- /.col-lg-12 -->
@@ -33,7 +33,7 @@ $no=1;
                                             <td ><?php echo"$rs[nama]";  ?></td>
                                             <td ><?php echo"$rs[alamat]";  ?></td>
 
-                                        <td class="text-center"><a href="./././media.php?module=input_sekolah&act=edit_sekolah&id=<?php echo $rs['id'] ?>"><button type="button" class="btn btn-info">Edit</button></a></td>
+                                        <td class="text-center"><a href="./././media.php?module=input_sekolah&act=edit_sekolah&id=<?php echo $rs['id'] ?>"><button type="button" class="btn btn-outline-primary">Edit</button></a></td>
 
                                         </tr>
 <?php

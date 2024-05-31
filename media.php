@@ -181,9 +181,9 @@ if (!empty($_SESSION['nama'])) {
                                     <li><a href="media.php?module=input_kelas&act=input" class="link-dark rounded mb-3">Input Data</a></li>
                                     <li><a href="media.php?module=kelas" class="link-dark rounded">Lihat Data</a></li>
                                 </ul>
-                             </div>
-                          </li>
-                          <li class="mb-2">
+                            </div>
+                        </li>
+                        <li class="mb-2">
                             <button class="btn btn-light rounded collapsed w-100" data-toggle="collapse" data-target="#data-pelajaran-collapse" aria-expanded="false">
                                 Data Mata Pelajaran
                             </button>
@@ -193,6 +193,22 @@ if (!empty($_SESSION['nama'])) {
                                     <li><a href="media.php?module=mata_pelajaran" class="link-dark rounded">Lihat Data</a></li>
                                 </ul>
                             </div>
+                        </li>
+                        <li class="mb-2">
+                            <button class="btn btn-light rounded collapsed w-100" data-toggle="collapse" data-target="#data-jadwal-collapse" aria-expanded="false">
+                                Data Jadwal
+                            </button>
+                            <div class="collapse mt-2 ml-3" id="data-jadwal-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                    <li><a href="media.php?module=input_jadwal&act=input" class="link-dark rounded mb-3">Input Data</a></li>
+                                    <li><a href="media.php?module=senin" class="link-dark rounded">Lihat Data</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="mb-2">
+                            <button class="btn btn-light rounded w-100" aria-expanded="false">
+                                <a href="media.php?module=sekolah" style="color: #212529;">Data Sekolah</a>
+                            </button>
                         </li>
 
                     <?php } ?>
