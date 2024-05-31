@@ -40,7 +40,7 @@
                                         ?> <tr class="odd gradeX">
                                                 <td><?php echo "$rs[nama]";  ?></td>
                                                 <td class="text-center"><?php echo "$rs[level]";  ?></td>
-                                                <td class="text-center"><?php echo "$rsa[sekolah]";  ?></td>
+                                                <td class="text-center"><?php echo "$rsa[nama]";  ?></td>
 
                                                 <td class="text-center"><a href="./././media.php?module=input_user&act=edit_user&idu=<?php echo $rs['idu'] ?>"><button type="button" class="btn btn-info">Edit</button>
                                                         <?php if ($_SESSION['level'] != "admin_guru") { ?>
