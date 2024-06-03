@@ -143,9 +143,6 @@ if ($_GET['act'] == "hapus_sekolah") {
         window.location=('../media.php?module=sekolah')</script>";
 }
 
-
-
-
 if ($_GET['act'] == "input_kelas") {
         mysqli_query($conn, "INSERT INTO kelas(id,nama)
 VALUES(
