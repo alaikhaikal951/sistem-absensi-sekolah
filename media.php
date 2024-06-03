@@ -135,7 +135,7 @@ if (!empty($_SESSION['nama'])) {
                         </span>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="logout.php">
+                        <a class="nav-link logout-btn" href="logout.php">
                             <?php echo "Logout"; ?>
                         </a>
                     </li>
@@ -225,6 +225,22 @@ if (!empty($_SESSION['nama'])) {
                         <li class="mb-2">
                             <button class="btn btn-light rounded w-100" aria-expanded="false">
                                 <a href="media.php?module=siswa_det" style="color: #212529;">Data Siswa</a>
+                            </button>
+                        </li>
+
+                    <?php } ?>
+
+                    <!-- level guru -->
+                    <?php if ($level == 'guru') { ?>
+
+                        <li class="mb-2">
+                            <button class="btn btn-light rounded w-100" aria-expanded="false">
+                                <a href="media.php?module=jadwal_mengajar" style="color: #212529;">Jadwal Mengajar</a>
+                            </button>
+                        </li>
+                        <li class="mb-2">
+                            <button class="btn btn-light rounded w-100" aria-expanded="false">
+                                <a href="media.php?module=guru_det" style="color: #212529;">Data Guru</a>
                             </button>
                         </li>
 
