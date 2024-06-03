@@ -19,7 +19,7 @@ a {
 }
 
 a:hover {
-  text-decoration: none;
+  text-decoration: underline;
   font-weight: bold;
 }
 
@@ -29,4 +29,18 @@ a:hover {
 
 td {
   align-content: center;
+}
+
+input {
+  margin: 0 2px 0 10px;
+}
+
+.btn:hover {
+  font-weight: bold !important;
+  text-decoration: underline;
+}
+
+.logout-btn:hover {
+  color: red !important;
+  text-decoration: underline;
 }
