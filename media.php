@@ -94,11 +94,11 @@ if (!empty($_SESSION['nama'])) {
                         <a class="nav-link" href="#">
                             <?php
                             if ($level == "admin") {
-                                echo $usre;
+                                echo "Admin : $usre";
                             } elseif ($level == "guru") {
-                                echo "Guru: $usre";
+                                echo "Guru : $usre";
                             } else {
-                                echo "Siswa: $usre";
+                                echo "Siswa : $usre";
                             }
                             ?>
                         </a>
@@ -135,7 +135,7 @@ if (!empty($_SESSION['nama'])) {
                         </span>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="logout.php">
+                        <a class="nav-link logout-btn" href="logout.php">
                             <?php echo "Logout"; ?>
                         </a>
                     </li>
@@ -148,6 +148,7 @@ if (!empty($_SESSION['nama'])) {
             <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
                 <ul class="list-unstyled ps-0">
 
+                    <!-- level admin -->
                     <?php if ($level == 'admin') { ?>
 
                         <li class="mb-2">
@@ -208,6 +209,38 @@ if (!empty($_SESSION['nama'])) {
                         <li class="mb-2">
                             <button class="btn btn-light rounded w-100" aria-expanded="false">
                                 <a href="media.php?module=sekolah" style="color: #212529;">Data Sekolah</a>
+                            </button>
+                        </li>
+
+                    <?php } ?>
+
+                    <!-- level siswa -->
+                    <?php if ($level == 'siswa') { ?>
+
+                        <li class="mb-2">
+                            <button class="btn btn-light rounded w-100" aria-expanded="false">
+                                <a href="media.php?module=siswa_senin" style="color: #212529;">Jadwal Belajar</a>
+                            </button>
+                        </li>
+                        <li class="mb-2">
+                            <button class="btn btn-light rounded w-100" aria-expanded="false">
+                                <a href="media.php?module=siswa_det" style="color: #212529;">Data Siswa</a>
+                            </button>
+                        </li>
+
+                    <?php } ?>
+
+                    <!-- level guru -->
+                    <?php if ($level == 'guru') { ?>
+
+                        <li class="mb-2">
+                            <button class="btn btn-light rounded w-100" aria-expanded="false">
+                                <a href="media.php?module=jadwal_mengajar" style="color: #212529;">Jadwal Mengajar</a>
+                            </button>
+                        </li>
+                        <li class="mb-2">
+                            <button class="btn btn-light rounded w-100" aria-expanded="false">
+                                <a href="media.php?module=guru_det" style="color: #212529;">Data Guru</a>
                             </button>
                         </li>
 

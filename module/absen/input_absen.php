@@ -1,231 +1,217 @@
-            <div class="row">
-                <div class="col-lg-12">
-					<h3 class="page-header"><strong>Input Data Absensi</h3>
-                </div>
-                <!-- /.col-lg-12 -->
+<div class="row">
+    <div class="col-lg-12 mt-4">
+        <h3 class="page-header"><strong>Input Data Absensi</h3>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading mb-2">
+                <?php $idj = $_GET['idj'];
+                $dataquery = mysqli_query($conn, "select * from jadwal where idj='$idj'");
+                $arrayj = mysqli_fetch_array($dataquery);
+                $datamp = mysqli_query($conn, "select * from mata_pelajaran where idm='$arrayj[idm]'");
+                $arraymp = mysqli_fetch_array($datamp);
+
+                echo "Data Siswa";
+                $sqlj = mysqli_query($conn, "select * from kelas where idk='$arrayj[idk]'");
+                $rsj = mysqli_fetch_array($sqlj);
+
+                echo "Kelas $rsj[nama] | $arraymp[nama_mp]";
+                ?>
             </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <?php $idj=$_GET['idj'];
-                            $dataquery=mysql_query("select * from jadwal where idj='$idj'");
-                            $arrayj=mysql_fetch_array($dataquery);
-                            $datamp=mysql_query("select * from mata_pelajaran where idm='$arrayj[idm]'");
-                            $arraymp=mysql_fetch_array($datamp);
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <form method="post" role="form" action="././module/simpan.php?act=input_absen&idj=<?php echo $idj ?>&tanggal=<?php echo date("Y-m-d") ?>&kelas=<?php echo $arrayj['idk'] ?>">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">NIS</th>
+                                    <th class="text-center">Nama</th>
+                                    <th class="text-center">Keterangan</th>
 
-                            echo "Data Siswa";
-							$sqlj=mysql_query("select * from kelas where idk='$arrayj[idk]'");
-							$rsj=mysql_fetch_array($sqlj);
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $no = 1;
+                                $tg = date("Y-m-d");
+                                $sqljk = mysqli_query($conn, "select * from siswa where idk='$arrayj[idk]'");
+                                while ($rs = mysqli_fetch_array($sqljk)) {
+                                    $sqla = mysqli_query($conn, "select * from absen where ids='$rs[ids]' and tgl='$tg' and idj='$idj'");
+                                    $rsa = mysqli_fetch_array($sqla);
+                                    $conk = mysqli_num_rows($sqla);
+                                    $sqlw = mysqli_query($conn, "select * from kelas where idk='$rs[idk]'");
+                                    $rsw = mysqli_fetch_array($sqlw);
+                                    $sqlb = mysqli_query($conn, "select * from sekolah where id='$rsw[id]'");
+                                    $rsb = mysqli_fetch_array($sqlb);
 
-							echo "Kelas $rsj[nama] | $arraymp[nama_mp]";
-							 ?>
-                        </div>
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                           <form method="post" role="form" action="././module/simpan.php?act=input_absen&idj=<?php echo $idj ?>&tanggal=<?php echo date("Y-m-d") ?>&kelas=<?php echo $arrayj['idk'] ?>">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center">NIS</th>
-                                            <th class="text-center">Nama</th>
-                                            <th class="text-center">Keterangan</th>
+                                ?> <tr class="odd gradeX">
+                                        <td><label style="font-weight:normal;"><?php echo "$rs[nis]";  ?></label></td>
+                                        <td><label style="font-weight:normal;"><?php echo "$rs[nama]";  ?></label></td>
 
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-<?php
-$no=1;
-$tg=date("Y-m-d");
-$sqljk=mysql_query("select * from siswa where idk='$arrayj[idk]'");
-	while($rs=mysql_fetch_array($sqljk)){
-	$sqla=mysql_query("select * from absen where ids='$rs[ids]' and tgl='$tg' and idj='$idj'");
-	$rsa=mysql_fetch_array($sqla);
-	$conk=mysql_num_rows($sqla);
-	$sqlw=mysql_query("select * from kelas where idk='$rs[idk]'");
-	$rsw=mysql_fetch_array($sqlw);
-	$sqlb=mysql_query("select * from sekolah where id='$rsw[id]'");
-	$rsb=mysql_fetch_array($sqlb);
+                                        <td class="text-center">
+                                            <div class="form-group">
 
-?>                                        <tr class="odd gradeX">
-                                            <td><label style="font-weight:normal;"><?php echo "$rs[nis]";  ?></label></td>
-                                            <td><label style="font-weight:normal;"><?php echo "$rs[nama]";  ?></label></td>
+                                                <?php
+                                                if ($conk == 0) {
+                                                ?>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="<?php echo $rs['ids'] ?>" value="A">A
+                                                    </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="<?php echo $rs['ids'] ?>" value="I">I
+                                                    </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="<?php echo $rs['ids'] ?>" value="S">S
+                                                    </label>
 
-                                            <td class="text-center">
-                                                                                    <div class="form-group">
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="<?php echo $rs['ids'] ?>" value="M">M
+                                                    </label>
 
-<?php
-if($conk==0){
-?>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="<?php echo $rs['ids'] ?>" value="A"  >A
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="<?php echo $rs['ids'] ?>" value="I">I
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="<?php echo $rs['ids'] ?>" value="S">S
-                                            </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="<?php echo $rs['ids'] ?>" value="N" checked>N
+                                                    </label>
 
-                                            <label class="radio-inline">
-                                                <input type="radio" name="<?php echo $rs['ids'] ?>" value="M" >M
-                                            </label>
+                                                <?php } elseif ($rsa['ket'] == "A") {
+                                                ?>
 
-                                            <label class="radio-inline">
-                                                <input type="radio" name="<?php echo $rs['ids'] ?>" value="N" checked>N
-                                            </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="<?php echo $rs['ids'] ?>" value="A" checked>A
+                                                    </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="<?php echo $rs['ids'] ?>" value="I">I
+                                                    </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="<?php echo $rs['ids'] ?>" value="S">S
+                                                    </label>
 
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="<?php echo $rs['ids'] ?>" value="M">M
+                                                    </label>
 
-<?php } ?>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="<?php echo $rs['ids'] ?>" value="N">N
+                                                    </label>
 
-<?php
-if($rsa['ket']=="A"){
-?>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="<?php echo $rs['ids'] ?>" value="A" checked >A
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="<?php echo $rs['ids'] ?>" value="I">I
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="<?php echo $rs['ids'] ?>" value="S">S
-                                            </label>
+                                                <?php } elseif ($rsa['ket'] == "I") {
+                                                ?>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="<?php echo $rs['ids'] ?>" value="A">A
+                                                    </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="<?php echo $rs['ids'] ?>" value="I" checked>I
+                                                    </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="<?php echo $rs['ids'] ?>" value="S">S
+                                                    </label>
 
-                                            <label class="radio-inline">
-                                                <input type="radio" name="<?php echo $rs['ids'] ?>" value="M" >M
-                                            </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="<?php echo $rs['ids'] ?>" value="M">M
+                                                    </label>
 
-                                            <label class="radio-inline">
-                                                <input type="radio" name="<?php echo $rs['ids'] ?>" value="N" >N
-                                            </label>
-
-
-<?php } ?>
-<?php
-if($rsa['ket']=="I"){
-?>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="<?php echo $rs['ids'] ?>" value="A"  >A
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="<?php echo $rs['ids'] ?>" value="I" checked>I
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="<?php echo $rs['ids'] ?>" value="S">S
-                                            </label>
-
-                                            <label class="radio-inline">
-                                                <input type="radio" name="<?php echo $rs['ids'] ?>" value="M" >M
-                                            </label>
-
-                                            <label class="radio-inline">
-                                                <input type="radio" name="<?php echo $rs['ids'] ?>" value="N" >N
-                                            </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="<?php echo $rs['ids'] ?>" value="N">N
+                                                    </label>
 
 
-<?php } ?>
-<?php
-if($rsa['ket']=="S"){
-?>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="<?php echo $rs['ids'] ?>" value="A"  >A
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="<?php echo $rs['ids'] ?>" value="I" >I
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="<?php echo $rs['ids'] ?>" value="S" checked>S
-                                            </label>
+                                                <?php } elseif ($rsa['ket'] == "S") {
+                                                ?>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="<?php echo $rs['ids'] ?>" value="A">A
+                                                    </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="<?php echo $rs['ids'] ?>" value="I">I
+                                                    </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="<?php echo $rs['ids'] ?>" value="S" checked>S
+                                                    </label>
 
-                                            <label class="radio-inline">
-                                                <input type="radio" name="<?php echo $rs['ids'] ?>" value="M" >M
-                                            </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="<?php echo $rs['ids'] ?>" value="M">M
+                                                    </label>
 
-                                            <label class="radio-inline">
-                                                <input type="radio" name="<?php echo $rs['ids'] ?>" value="N" >N
-                                            </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="<?php echo $rs['ids'] ?>" value="N">N
+                                                    </label>
 
 
-<?php } ?>
-<?php
-if($rsa['ket']=="M"){
-?>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="<?php echo $rs['ids'] ?>" value="A"  >A
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="<?php echo $rs['ids'] ?>" value="I" >I
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="<?php echo $rs['ids'] ?>" value="S" >S
-                                            </label>
+                                                <?php } elseif ($rsa['ket'] == "M") {
+                                                ?>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="<?php echo $rs['ids'] ?>" value="A">A
+                                                    </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="<?php echo $rs['ids'] ?>" value="I">I
+                                                    </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="<?php echo $rs['ids'] ?>" value="S">S
+                                                    </label>
 
-                                            <label class="radio-inline">
-                                                <input type="radio" name="<?php echo $rs['ids'] ?>" value="M" checked>M
-                                            </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="<?php echo $rs['ids'] ?>" value="M" checked>M
+                                                    </label>
 
-                                            <label class="radio-inline">
-                                                <input type="radio" name="<?php echo $rs['ids'] ?>" value="N" >N
-                                            </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="<?php echo $rs['ids'] ?>" value="N">N
+                                                    </label>
 
 
-<?php } ?>
-<?php
-if($rsa['ket']=="N"){
-?>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="<?php echo $rs['ids'] ?>" value="A"  >A
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="<?php echo $rs['ids'] ?>" value="I" >I
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="<?php echo $rs['ids'] ?>" value="S" >S
-                                            </label>
+                                                <?php } elseif ($rsa['ket'] == "N") {
+                                                ?>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="<?php echo $rs['ids'] ?>" value="A">A
+                                                    </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="<?php echo $rs['ids'] ?>" value="I">I
+                                                    </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="<?php echo $rs['ids'] ?>" value="S">S
+                                                    </label>
 
-                                            <label class="radio-inline">
-                                                <input type="radio" name="<?php echo $rs['ids'] ?>" value="M" >M
-                                            </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="<?php echo $rs['ids'] ?>" value="M">M
+                                                    </label>
 
-                                            <label class="radio-inline">
-                                                <input type="radio" name="<?php echo $rs['ids'] ?>" value="N" checked >N
-                                            </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="<?php echo $rs['ids'] ?>" value="N" checked>N
+                                                    </label>
 
+                                                <?php } ?>
 
-<?php } ?>
+                                            </div>
 
+                                        </td>
 
-                                        </div>
+                                    </tr>
+                                <?php
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                        <button type="submit" class="btn btn-success">Simpan Data Absen</button>
 
-                                            </td>
-
-                                        </tr>
-<?php
-}
-?>
-                                    </tbody>
-                                </table>
-                                        <button type="submit" class="btn btn-success">Simpan Data Absen</button>
-
-</form>
-                            </div>
-                            <!-- /.table-responsive -->
-<br>
-                            <div class="well">
-                                <h4>Keterangan Absensi</h4>
-                                <p>A = Tidak Masuk Tanpa Keterangan</p>
-                                <p>I = Tidak Masuk Ada Surat Ijin Atau Pemberitahuan</p>
-                                <p>S = Tidak Masuk Ada Surat Dokter Atau Pemberitahuan</p>
-                                <p>M = Hadir</p>
-                                <p>N = Belum di Absen</p>
-
-                            </div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
+                    </form>
                 </div>
-                <!-- /.col-lg-12 -->
+                <!-- /.table-responsive -->
+                <br>
+                <div class="well">
+                    <h4>Keterangan Absensi</h4>
+                    <p>A = Tidak Masuk Tanpa Keterangan</p>
+                    <p>I = Tidak Masuk Ada Surat Ijin Atau Pemberitahuan</p>
+                    <p>S = Tidak Masuk Ada Surat Dokter Atau Pemberitahuan</p>
+                    <p>M = Hadir</p>
+                    <p>N = Belum di Absen</p>
+
+                </div>
             </div>
-            <!-- /.row -->
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
