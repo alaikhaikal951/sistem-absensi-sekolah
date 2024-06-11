@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 31, 2018 at 08:46 PM
--- Server version: 10.1.10-MariaDB
--- PHP Version: 7.0.3
+-- Generation Time: Jun 11, 2024 at 04:38 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -32,7 +33,7 @@ CREATE TABLE `absen` (
   `idj` int(11) NOT NULL,
   `tgl` varchar(100) NOT NULL,
   `ket` varchar(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `absen`
@@ -50,7 +51,21 @@ INSERT INTO `absen` (`ida`, `ids`, `idj`, `tgl`, `ket`) VALUES
 (9, 13, 2, '2018-05-08', 'M'),
 (10, 23, 2, '2018-05-08', 'I'),
 (11, 25, 2, '2018-05-08', 'M'),
-(12, 27, 2, '2018-05-08', 'A');
+(12, 27, 2, '2018-05-08', 'A'),
+(13, 28, 15, '2024-06-03', 'N'),
+(14, 29, 15, '2024-06-03', 'N'),
+(15, 30, 15, '2024-06-03', 'N'),
+(16, 34, 15, '2024-06-03', 'N'),
+(17, 35, 15, '2024-06-03', 'N'),
+(18, 36, 15, '2024-06-03', 'N'),
+(19, 38, 15, '2024-06-03', 'M'),
+(20, 28, 12, '2024-06-03', 'S'),
+(21, 29, 12, '2024-06-03', 'M'),
+(22, 30, 12, '2024-06-03', 'M'),
+(23, 34, 12, '2024-06-03', 'M'),
+(24, 35, 12, '2024-06-03', 'A'),
+(25, 36, 12, '2024-06-03', 'M'),
+(26, 38, 12, '2024-06-03', 'M');
 
 -- --------------------------------------------------------
 
@@ -65,7 +80,7 @@ CREATE TABLE `guru` (
   `jk` varchar(3) NOT NULL,
   `alamat` text NOT NULL,
   `pass` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `guru`
@@ -79,9 +94,9 @@ INSERT INTO `guru` (`idg`, `nip`, `nama`, `jk`, `alamat`, `pass`) VALUES
 (18, '34627426463', 'Drs. Masrur', 'L', '-', '77e69c137812518e359196bb2f5e9bb9'),
 (19, '72427476493', 'Syarifuddin, S.Ag', 'L', '-', '77e69c137812518e359196bb2f5e9bb9'),
 (21, '44357356372', 'Rina, S.Pd', 'P', '-', '77e69c137812518e359196bb2f5e9bb9'),
-(23, '17367626692', 'Rizki, ST.', 'L', '-', '77e69c137812518e359196bb2f5e9bb9'),
 (24, '70547476433', 'Drs. Nur', 'L', '-', '77e69c137812518e359196bb2f5e9bb9'),
-(25, '74377586613', 'Rizal Hermawan, M.Kom', 'L', '-', '77e69c137812518e359196bb2f5e9bb9');
+(25, '74377586613', 'Rizal Hermawan, M.Kom', 'L', '-', '77e69c137812518e359196bb2f5e9bb9'),
+(26, '19540914973', 'Alaik Haikal Alfaizi', 'L', 'Jln. Belimbing 1 No. 22', '64e9b03f788b03e18182f0a37848c085');
 
 -- --------------------------------------------------------
 
@@ -92,7 +107,7 @@ INSERT INTO `guru` (`idg`, `nip`, `nama`, `jk`, `alamat`, `pass`) VALUES
 CREATE TABLE `hari` (
   `idh` int(11) NOT NULL,
   `hari` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `hari`
@@ -103,7 +118,7 @@ INSERT INTO `hari` (`idh`, `hari`) VALUES
 (2, 'Selasa'),
 (3, 'Rabu'),
 (4, 'Kamis'),
-(5, 'Jum''at');
+(5, 'Jum\'at');
 
 -- --------------------------------------------------------
 
@@ -120,20 +135,26 @@ CREATE TABLE `jadwal` (
   `jam_mulai` time NOT NULL,
   `jam_selesai` time NOT NULL,
   `aktif` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `jadwal`
 --
 
 INSERT INTO `jadwal` (`idj`, `idh`, `idg`, `idk`, `idm`, `jam_mulai`, `jam_selesai`, `aktif`) VALUES
-(1, 1, 9, 7, 2, '07:00:00', '09:00:00', 0),
+(1, 1, 9, 8, 2, '07:00:00', '08:00:00', 0),
 (2, 2, 25, 8, 1, '07:00:00', '09:00:00', 0),
-(4, 3, 25, 7, 1, '14:00:00', '15:00:00', 1),
-(5, 3, 25, 9, 1, '13:00:00', '15:00:00', 1),
+(5, 3, 25, 9, 1, '13:00:00', '15:00:00', 0),
 (6, 2, 23, 7, 3, '10:00:00', '12:00:00', 0),
 (7, 4, 10, 9, 3, '10:00:00', '12:00:00', 0),
-(8, 2, 17, 8, 3, '13:00:00', '15:00:00', 0);
+(8, 2, 17, 8, 3, '13:00:00', '15:00:00', 0),
+(9, 5, 26, 7, 3, '08:00:00', '10:00:00', 0),
+(10, 1, 18, 9, 4, '08:00:00', '10:00:00', 0),
+(11, 1, 21, 9, 2, '10:00:00', '11:30:00', 0),
+(12, 1, 26, 9, 3, '09:00:00', '10:00:00', 0),
+(13, 5, 26, 9, 3, '10:00:00', '11:00:00', 0),
+(14, 6, 26, 9, 3, '11:00:00', '12:00:00', 0),
+(15, 1, 26, 9, 1, '08:00:00', '09:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -145,7 +166,7 @@ CREATE TABLE `kelas` (
   `idk` int(10) NOT NULL,
   `id` int(10) NOT NULL,
   `nama` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `kelas`
@@ -165,7 +186,7 @@ INSERT INTO `kelas` (`idk`, `id`, `nama`) VALUES
 CREATE TABLE `mata_pelajaran` (
   `idm` int(11) NOT NULL,
   `nama_mp` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `mata_pelajaran`
@@ -174,7 +195,8 @@ CREATE TABLE `mata_pelajaran` (
 INSERT INTO `mata_pelajaran` (`idm`, `nama_mp`) VALUES
 (1, 'Matematika'),
 (2, 'Bahasa Indonesia'),
-(3, 'Ilmu Pengetahuan Alam');
+(3, 'Ilmu Pengetahuan Alam'),
+(4, 'Fisika');
 
 -- --------------------------------------------------------
 
@@ -187,7 +209,7 @@ CREATE TABLE `sekolah` (
   `kode` varchar(50) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `alamat` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `sekolah`
@@ -215,7 +237,7 @@ CREATE TABLE `siswa` (
   `ibu` varchar(50) NOT NULL,
   `k_ibu` varchar(50) NOT NULL,
   `pass` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `siswa`
@@ -232,13 +254,14 @@ INSERT INTO `siswa` (`ids`, `nis`, `nama`, `jk`, `alamat`, `idk`, `tlp`, `bapak`
 (13, '9974602096', 'Hardianti', 'P', '-', 8, '85733743907', '-', '-', '-', '-', 'bcd724d15cde8c47650fda962968f102'),
 (23, '9974603377', 'Ari Nur', 'L', '-', 8, '85954590935', '-', '-', '-', '-', 'bcd724d15cde8c47650fda962968f102'),
 (25, '9985109543', 'Adit', 'L', '-', 8, '85733743907', '-', '-', '-', '-', 'bcd724d15cde8c47650fda962968f102'),
-(27, '9965320857', 'Bani', 'L', '-', 8, '85733743907', '-', '-', '-', '-', 'd41d8cd98f00b204e9800998ecf8427e'),
+(27, '9965320857', 'Bani', 'L', '-', 8, '85733743907', 'Bana', '-', '-', '-', 'd41d8cd98f00b204e9800998ecf8427e'),
 (28, '9974603400', 'Angel', 'P', '-', 9, '85733743907', '-', '-', '-', '-', 'bcd724d15cde8c47650fda962968f102'),
 (29, '9965320870', 'Rezah', 'L', '-', 9, '85733743907', '-', '-', '-', '-', 'bcd724d15cde8c47650fda962968f102'),
 (30, '9965320876', 'Dwi', 'L', '-', 9, '85733743907', '-', '-', '-', '-', 'bcd724d15cde8c47650fda962968f102'),
 (34, '9965320890', 'Evi', 'P', '-', 9, '85733743907', '-', '-', '-', '-', 'bcd724d15cde8c47650fda962968f102'),
 (35, '9985109574', 'Fio', 'P', '-', 9, '85733743907', '-', '-', '-', '-', 'bcd724d15cde8c47650fda962968f102'),
-(36, '9965320905', 'Rindy', 'P', '-', 9, '85733743907', '-', '-', '-', '-', 'bcd724d15cde8c47650fda962968f102');
+(36, '9965320905', 'Rindy', 'P', '-', 9, '85733743907', '-', '-', '-', '-', 'bcd724d15cde8c47650fda962968f102'),
+(38, '9965320858', 'Alaik Haikal Alfaizi', 'L', 'Jln. Belimbing 1 No. 22', 9, '85162867948', '', '', '', '', '3445eed191476a558e69ed08138ea0b8');
 
 -- --------------------------------------------------------
 
@@ -252,14 +275,15 @@ CREATE TABLE `user` (
   `pass` text NOT NULL,
   `level` varchar(50) NOT NULL,
   `id` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`idu`, `nama`, `pass`, `level`, `id`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 2);
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 2),
+(4, 'alaik', '1a36591bceec49c832079e270d7e8b73', 'admin_guru', 2);
 
 --
 -- Indexes for dumped tables
@@ -327,47 +351,57 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `absen`
 --
 ALTER TABLE `absen`
-  MODIFY `ida` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ida` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
 --
 -- AUTO_INCREMENT for table `guru`
 --
 ALTER TABLE `guru`
-  MODIFY `idg` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `idg` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
 --
 -- AUTO_INCREMENT for table `hari`
 --
 ALTER TABLE `hari`
   MODIFY `idh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `jadwal`
 --
 ALTER TABLE `jadwal`
-  MODIFY `idj` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idj` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
 --
 -- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `idk` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idk` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- AUTO_INCREMENT for table `mata_pelajaran`
 --
 ALTER TABLE `mata_pelajaran`
-  MODIFY `idm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `sekolah`
 --
 ALTER TABLE `sekolah`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `ids` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `ids` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `idu` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idu` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
